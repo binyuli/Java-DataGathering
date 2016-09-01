@@ -8,11 +8,12 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public class TpartsDataGethering {
-	public static void appendMethodA(String targetFilePath,String resultFile){
+	// 读取单个文件，并以增量写入目标文件
+	public static void appendMethodA(String targetFile,String resultFile){
 
 		try {
 			RandomAccessFile raf = new RandomAccessFile(resultFile, "rw"); // 该类可以定位文件,
-			File targetFile = new File(targetFilePath);
+			File targetFile = new File(targetFile);
 			BufferedReader br = new BufferedReader(new FileReader(targetFile));
 
 			long len = targetFile.length(); // 获得文件的长度,以便定位末尾
@@ -38,6 +39,7 @@ public class TpartsDataGethering {
 
 	}
 
+	// 读取某个文件夹下面所有的文件，依次写入目标文件 resultFile 
 	// read the files under the path targetFilePath,and output the result in resultFile
 	public static void appendMethodB(String targetFilePath,String resultFile){
 
@@ -75,18 +77,11 @@ public class TpartsDataGethering {
 	
 
 	public static void main(String[] args) {
-//		String targetFilePath = "D:/kplus_brand.sql";
-//		String targetFilePath = "D:/kplus_product_category.sql";
-//		String targetFilePath = "D:/vehicletype.sql";
-//		String targetFilePath = "D:/kplus_product.sql";
-//		String targetFilePath = "D:/partscategory.sql";
-//		String targetFilePath = "D:/partsoem.sql";
-//		String targetFilePath = "D:/vehicletype_partscategory.sql";
 
 		String targetFilePath = "D:/input";
-		String resultFile = "D:/output/tpartsImport.sql";
+		String resultFile = "D:/output/output.txt";
 
-//		appendMethodA(targetFilePath,resultFile);
+//		appendMethodA(targetFile,resultFile);
 		appendMethodB(targetFilePath,resultFile);
 		System.out.println("write finished !");
 	}
